@@ -1,0 +1,166 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afandi — Cybersecurity Portfolio</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel: rgba(255,255,255,0.03);
+      --accent:#00ffd5;
+      --accent-2:#7c5cff;
+      --muted:rgba(255,255,255,0.6);
+      --glass: rgba(255,255,255,0.04);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);color:#e6f3f3;overflow-x:hidden}#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px;position:relative;z-index:1}
+
+.card{
+  width:100%;max-width:1100px;background:linear-gradient(180deg,var(--panel),transparent);
+  backdrop-filter: blur(6px);border-radius:16px;padding:32px;box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start;
+}
+
+@media (max-width:768px){
+  .card{grid-template-columns:1fr;gap:20px;padding:20px;text-align:center}
+  .socials{justify-content:center;flex-wrap:wrap}
+  .projects{grid-template-columns:1fr 1fr}
+}
+@media (max-width:480px){
+  .card{padding:16px}
+  .projects{grid-template-columns:1fr}
+  .avatar{width:90px;height:90px;margin:0 auto 12px auto}
+  h1{font-size:20px}
+  h2{font-size:18px}
+  h3{font-size:14px}
+  p{font-size:13px}
+}
+
+.left{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03)}
+.avatar{width:120px;height:120px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.avatar img{width:100%;height:100%;object-fit:cover}
+h1{margin:0;font-size:24px}
+h2{margin:0;font-size:21px}
+h3{margin:0;font-size:17px}
+p {margin:0; font-size:15px;color: var(--muted)}
+.role{color:var(--muted);margin-top:6px;font-size:13px}
+
+.stats{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+.stat{background:var(--glass);padding:8px 12px;border-radius:10px;font-size:13px;color:var(--muted)}
+
+.socials{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.sbtn{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:10px;background:linear-gradient(90deg,var(--panel),transparent);border:1px solid rgba(255,255,255,0.02);cursor:pointer;text-decoration:none;color:inherit;font-size:13px;transition:background .3s ease}
+.sbtn:hover{background:rgba(255,255,255,0.08)}
+.sbtn svg{width:18px;height:18px;fill:var(--accent)}
+
+.right{padding:18px}
+.about{margin-bottom:18px;font-size:15px;line-height:1.6;color: var(--muted)}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.chip{padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#061018;font-weight:600;font-size:13px}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.project{padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border:1px solid rgba(255,255,255,0.03);transition:transform .3s ease}
+.project:hover{transform:translateY(-4px)}
+
+.cta{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));padding:12px 16px;border-radius:12px;color:#021018;border:none;font-weight:700;cursor:pointer;transition:opacity .3s ease}
+.btn-primary:hover{opacity:.8}
+.btn-ghost{background:transparent;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:var(--muted);transition:background .3s ease}
+.btn-ghost:hover{background:rgba(255,255,255,0.05)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:50}
+.modal{background:var(--panel);backdrop-filter:blur(10px);padding:24px 32px;border-radius:16px;max-width:320px;text-align:center;animation:fadeIn .3s ease;box-shadow:0 0 20px rgba(0,0,0,0.5)}
+.modal h3{margin-bottom:12px;color:var(--accent)}
+.modal p{color:var(--muted);margin-bottom:16px}
+.modal button{padding:8px 16px;border:none;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021018;font-weight:600;cursor:pointer}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="wrap">
+    <main class="card">
+      <section class="left">
+        <div class="avatar">
+          <img src="https://scontent.fsub3-1.fna.fbcdn.net/v/t39.30808-6/547444887_1550580132575929_2287248101773734859_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=9zc3-L_K8zQQ7kNvwH2Vj3z&_nc_oc=AdntSrwqiFe_Rr7tPY__7oZhZXML9WNMx8XW4KbYMugcVDC3AQPrPPU23ziQlBOf9-ZRccJ8McLXL1AXlXCQyo1g&_nc_zt=23&_nc_ht=scontent.fsub3-1.fna&_nc_gid=l7oiKPPhOAvEWCvKG1SAGw&oh=00_Afdy0XYQZ_v7Z7gdoqKT3hHWCEVe40lxH1KXUapsF6WTKQ&oe=690656C9" alt="Avatar Junio"/>
+        </div>
+        <h1>Afandi</h1>
+        <div class="role">Junior Cybersecurity | Bug Bounty • Pentesting • CTI</div>
+        <div class="stats">
+          <div class="stat">Bug reports: <strong>24</strong></div>
+          <div class="stat">Domains tested: <strong>12+</strong></div>
+          <div class="stat">Tools: <strong>10</strong></div>
+        </div><div class="socials">
+      <a class="sbtn" href="https://instagram.com/afandi.404" target="_blank" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.75-.75a.75.75 0 100 1.5.75.75 0 000-1.5z"/></svg> Instagram
+      </a>
+      <a class="sbtn" href="https://facebook.com/afandi404" target="_blank" title="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5A3.5 3.5 0 0114 6h2v3h-1.5a1 1 0 00-1 1V12H16l-.5 3h-2v7A10 10 0 0022 12z"/></svg> Facebook
+      </a>
+      <a class="sbtn" href="https://t.me/afandi404" target="_blank" title="Telegram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.04 15.47l-.39 3.88c.56 0 .8-.24 1.08-.52l2.6-2.47 5.38 3.94c.99.55 1.7.26 1.96-.91l3.56-16.68c.32-1.51-.55-2.11-1.52-1.74L1.45 9.98C-.11 10.6-.1 11.43 1.17 11.8l4.88 1.52 11.3-7.13c.53-.33 1.01-.15.61.21"/></svg> Telegram
+      </a>
+      <a class="sbtn" href="https://github.com/afandi404" target="_blank" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-3.16 19.49c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34a2.66 2.66 0 00-1.1-1.46c-.9-.6.07-.59.07-.59a2.1 2.1 0 011.54 1.04 2.15 2.15 0 002.94.84 2.15 2.15 0 01.64-1.35c-2.22-.25-4.56-1.1-4.56-4.91A3.83 3.83 0 017.67 8a3.56 3.56 0 01.1-2.62s.84-.27 2.75 1.05a9.45 9.45 0 015 0c1.9-1.32 2.75-1.05 2.75-1.05a3.56 3.56 0 01.1 2.62 3.83 3.83 0 011.02 2.67c0 3.82-2.34 4.66-4.57 4.9a2.41 2.41 0 01.68 1.88v2.79c0 .27.18.59.68.48A10 10 0 0012 2z"/></svg> GitHub
+      </a>
+    </div>
+  </section>
+
+  <section class="right">
+    <h2>About</h2>
+    <div class="about">Saya Afandi, junior cyber security enthusiast — fokus pada web app pentesting, vulnerability research, dan writeups. Suka otomatisasi tooling dan berbagi knowledge.</div>
+    <div class="chips">
+      <div class="chip">Web App Security</div>
+      <div class="chip">Bug Bounty</div>
+      <div class="chip">Recon & OSINT</div>
+      <div class="chip">Scripting (Python, PHP, JS)</div>
+    </div>
+    <h3 style="margin: 10px">Selected Projects</h3>
+    <div class="projects">
+      <article class="project"><h3>Recon Toolkit</h3><p>Kumpulan script discovery dan fingerprinting — scanner, domain enum, screenshotter.</p></article>
+      <article class="project"><h3>Payloads & Writeups</h3><p>Langkah reproduksi bug, POC, dan mitigasi rekomendasi.</p></article>
+      <article class="project"><h3>CTI Feed</h3><p>Automation memproses indikator kompromi & alert ringan.</p></article>
+    </div>
+    <div class="cta">
+      <button class="btn-primary" id="hireBtn">Hire / Collaborate</button>
+      <button class="btn-ghost" id="downloadBtn">Download CV</button>
+    </div>
+  </section>
+</main>
+
+  </div>  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3>Belum tersedia</h3>
+      <p>Fitur ini belum tersedia untuk saat ini.</p>
+      <button id="closeModal">Tutup</button>
+    </div>
+  </div>  <script>
+    (function(){const c=document.getElementById('particles');const x=c.getContext('2d');let w=innerWidth,h=innerHeight;const D=Math.max(1,devicePixelRatio||1);function R(){c.width=w*D;c.height=h*D;c.style.width=w+'px';c.style.height=h+'px';x.scale(D,D);}R();const p=[];const cfg={n:80,s:.2,d:120};function rand(a,b){return Math.random()*(b-a)+a}for(let i=0;i<cfg.n;i++){p.push({x:rand(0,w),y:rand(0,h),vx:rand(-cfg.s,cfg.s),vy:rand(-cfg.s,cfg.s),r:rand(1,3)})}function step(){x.clearRect(0,0,w,h);for(let i of p){i.x+=i.vx;i.y+=i.vy;if(i.x<0)i.x=w;if(i.x>w)i.x=0;if(i.y<0)i.y=h;if(i.y>h)i.y=0;}for(let i=0;i<p.length;i++){for(let j=i+1;j<p.length;j++){const a=p[i],b=p[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<cfg.d){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle='rgba(0,255,213,'+(1-d/cfg.d)*0.1+')';x.stroke();}}}for(let i of p){x.beginPath();x.arc(i.x,i.y,i.r,0,Math.PI*2);x.fillStyle='rgba(0,255,213,0.8)';x.fill();}requestAnimationFrame(step);}step();})();
+
+    const modalOverlay=document.getElementById('modalOverlay');
+    const closeModal=document.getElementById('closeModal');
+
+    document.getElementById('hireBtn').onclick=()=>{
+      modalOverlay.style.display='flex';
+    }
+
+    closeModal.onclick=()=>{
+      modalOverlay.style.display='none';
+    }
+
+    window.onclick=(e)=>{
+      if(e.target===modalOverlay){modalOverlay.style.display='none';}
+    }
+
+    document.getElementById('downloadBtn').onclick=()=>{
+      const t=`Afandi - Junior Cybersecurity\nEmail: Afandi@example.com`;const b=new Blob([t],{type:'text/plain'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='Afandi_CV.txt';a.click();URL.revokeObjectURL(u)}
+  </script></body>
+</html>
